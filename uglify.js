@@ -261,7 +261,7 @@
     }
 
     function M(e, t) {
-        var n = j(e);
+        var n = K(e);
         console.log(e, n, "status", t);
         var o = chrome.app.window.get(n);
         o && o.contentWindow.updateWindowStatusText && o.contentWindow.updateWindowStatusText(t)
@@ -291,7 +291,7 @@
             M(e, "Connecting..."), AdbUtils.getApkPath(e, "com.koushikdutta.vysor", function(n) {
                 return n ? void AdbUtils.runMain(e, n, "com.koushikdutta.vysor.ProtocolVersionMain", function(e) {
                     var o = e.match(/vysor-io-.*?[\r\n]/);
-                    return o && o.length ? (e = o[0], e && (e = e.trim()), console.log("protocol version: " + e), void t("vysor-io-50" != e ? null : n)) : void t(null)
+                    return o && o.length ? (e = o[0], e && (e = e.trim()), console.log("protocol version: " + e), void t("vysor-io-52" != e ? null : n)) : void t(null)
                 }) : void t()
             })
         }
@@ -310,7 +310,7 @@
     }
 
     function x(e) {
-        var t = j(e),
+        var t = K(e),
             n = chrome.app.window.get(t);
         n && n.close()
     }
@@ -334,14 +334,14 @@
         }, 5e3)
     }
 
-    function j(e) {
+    function K(e) {
         var t = e;
-        return Le[e] && Le[e].id ? t = Le[e].id : $e[e] && $e[e].id ? t = $e[e].id : Ye[e] && (t = Ye[e]), t
+        return Le[e] && Le[e].id ? t = Le[e].id : $e[e] && $e[e].id ? t = $e[e].id : Je[e] && (t = Je[e]), t
     }
 
-    function K(e, t, n) {
+    function j(e, t, n) {
         ee();
-        var o = j(e),
+        var o = K(e),
             i = chrome.app.window.get(o);
         return i ? (i.show(), t && B(e, function(t, n) {
             F(i, e, t, n), i.contentWindow.connectionReady()
@@ -372,7 +372,7 @@
         t && t.gcmConn.destroy()
     }
 
-    function J(e, t, n) {
+    function Y(e, t, n) {
         var o = Re[e];
         if (o && o.devices[t]) {
             o.gcmConn.gcmConns[t] && o.gcmConn.gcmConns[t].destroy();
@@ -396,7 +396,7 @@
         }
     }
 
-    function Y(e, t, n) {
+    function J(e, t, n) {
         function o(e) {
             n && n(null, e)
         }
@@ -668,7 +668,7 @@
                 minHeight: 868
             }
         }, function(e) {
-            De = e, De.contentWindow.openList = G, U(De), De.contentWindow.disconnectSharedDevice = ae, De.contentWindow.toggleShare = de, De.contentWindow.unshareDevice = ne, De.contentWindow.quietSerial = ce, De.contentWindow.openWindow = K, De.contentWindow.closeWindow = x, De.contentWindow.createDeviceFarmConnection = J, De.contentWindow.destroyDeviceFarmConnection = H, De.contentWindow.adbServer = Ie, De.contentWindow.tracker = Ue, De.contentWindow.startWireless = le, De.contentWindow.startDeviceFarm = X, De.contentWindow.stopDeviceFarm = q, De.contentWindow.updateKeyboard = z, De.contentWindow.onload = function() {
+            De = e, De.contentWindow.openList = G, U(De), De.contentWindow.disconnectSharedDevice = ae, De.contentWindow.toggleShare = de, De.contentWindow.unshareDevice = ne, De.contentWindow.quietSerial = ce, De.contentWindow.openWindow = j, De.contentWindow.closeWindow = x, De.contentWindow.createDeviceFarmConnection = Y, De.contentWindow.destroyDeviceFarmConnection = H, De.contentWindow.adbServer = Ie, De.contentWindow.tracker = Ue, De.contentWindow.startWireless = le, De.contentWindow.startDeviceFarm = X, De.contentWindow.stopDeviceFarm = q, De.contentWindow.updateKeyboard = z, De.contentWindow.onload = function() {
                 U(De), P(), ue()
             }, De.onClosed.addListener(function() {
                 De = null, V()
@@ -849,7 +849,7 @@
                 }
 
                 function i() {
-                    ue(), m("Vysor is connected wirelessly. You may disconnect your device."), Ue.sendEvent("go-wireless"), ce(a), K(a, !0, function(e) {
+                    ue(), m("Vysor is connected wirelessly. You may disconnect your device."), Ue.sendEvent("go-wireless"), ce(a), j(a, !0, function(e) {
                         se(a), e.contentWindow.tryReconnect = function() {
                             se(a), o(!1)
                         }
@@ -860,9 +860,9 @@
                 if (r || (r = n.match("wlan0: ip (.*?) ")), !r) return void m("Unable to switch to wireless mode. Is your Android connected to Wifi?");
                 var c = r[1],
                     a = c + ":5555";
-                Je[e] = a, Ye[a] = e;
+                Ye[e] = a, Je[a] = e;
                 var d = $e[a];
-                return d && (d.id = e), Ye[e] && (device.id = Ye[e]), d && "device" == d.status ? void i() : (ce(e), void t.newSocket("tcpip:5555", function(e) {
+                return d && (d.id = e), Je[e] && (device.id = Je[e]), d && "device" == d.status ? void i() : (ce(e), void t.newSocket("tcpip:5555", function(e) {
                     return e ? void l(e, function(e) {
                         console.log("tcpip:5555 result", e), o(!0, function(e) {
                             e && (console.error("host:connect failed, trying again in a few seconds", e), setTimeout(function() {
@@ -879,7 +879,7 @@
 
     function ue() {
         Fe || (Fe = n(function() {
-            Fe = null, De && De.contentWindow.refreshList && De.contentWindow.refreshList($e, Le, Ne, Re, Oe, Ye, Je, _e && _e.isListening("share"), Be, Ie.isRunning(), je)
+            Fe = null, De && De.contentWindow.refreshList && De.contentWindow.refreshList($e, Le, Ne, Re, Oe, Je, Ye, _e && _e.isListening("share"), Be, Ie.isRunning(), Ke)
         }))
     }
 
@@ -895,14 +895,14 @@
                         }
                         n = !0;
                         var s = e[o];
-                        Ye[o] && (s.id = Ye[o]);
+                        Je[o] && (s.id = Je[o]);
                         var c = $e[o];
                         if (!c || s.status != c.status) {
                             ne(o);
                             var a = s.properties.indexOf("emulator") != -1 || s.properties.indexOf("vbox") != -1,
-                                d = j(o);
+                                d = K(o);
                             if (!a && Ve && !Xe[d]) {
-                                if (chrome.app.window.get(d) || Ie.isRunning() || ze[d]) return void(r() && K(o, !0));
+                                if (chrome.app.window.get(d) || Ie.isRunning() || ze[d]) return void(r() && j(o, !0));
                                 if (2 != t && r() && "device" == s.status) {
                                     var l = chrome.runtime.getManifest().name;
                                     return 1 != t ? (chrome.notifications.create("never-start-automatically", {
@@ -913,7 +913,7 @@
                                         buttons: [{
                                             title: "Never Start Automatically"
                                         }]
-                                    }), void K(o, !0)) : void chrome.notifications.create("never-start-automatically-" + Math.random(), {
+                                    }), void j(o, !0)) : void chrome.notifications.create("never-start-automatically-" + Math.random(), {
                                         type: "basic",
                                         iconUrl: "/icon.png",
                                         title: l,
@@ -928,7 +928,7 @@
                                                 o == e && (chrome.notifications.onClosed.removeListener(t), chrome.notifications.onButtonClicked.removeListener(n))
                                             },
                                             n = function(t, n) {
-                                                t == e && (chrome.notifications.clear(t), 0 == n ? K(o, !0) : chrome.storage.local.set({
+                                                t == e && (chrome.notifications.clear(t), 0 == n ? j(o, !0) : chrome.storage.local.set({
                                                     "connect-automatically": !1
                                                 }))
                                             };
@@ -952,16 +952,16 @@
                     n = require("path").join(t, "native", e, "adb");
                 return "win32" == e ? n += ".exe" : require("fs").chmodSync(n, "755"), console.log("attempting to start built in adb binary", n), void require("child_process").execFile(n, ["start-server"])
             }
-            je || window.chrome && window.chrome.runtime && window.chrome.runtime.connectNative && (je = chrome.runtime.connectNative("com.clockworkmod.adb"), je.onDisconnect.addListener(function() {
-                je = null
-            }), je.postMessage({
+            Ke || window.chrome && window.chrome.runtime && window.chrome.runtime.connectNative && (Ke = chrome.runtime.connectNative("com.clockworkmod.adb"), Ke.onDisconnect.addListener(function() {
+                Ke = null
+            }), Ke.postMessage({
                 command: "start-server"
             }))
         }
     }
 
     function pe() {
-        Ke || fe(), Ke = g(Ke, null, 1e4, fe)
+        je || fe(), je = g(je, null, 1e4, fe)
     }
 
     function ve() {
@@ -2042,6 +2042,20 @@
                 this.device.sendMessage(n.kCommandCLSE, this.localId, this.remoteId), this.dataReceived(null)
             }, r.prototype.buffered = Socket.prototype.buffered, r.prototype.dataReceived = Socket.prototype.dataReceived, r.prototype.read = Socket.prototype.read, r.prototype.pause = Socket.prototype.pause, r.prototype.resume = Socket.prototype.resume, r.prototype.unshift = Socket.prototype.unshift, r.prototype.onPause = function() {}, r.prototype.onResume = function() {
                 this.device.sendMessage(n.kCommandOKAY, this.localId, this.remoteId)
+            }, d.prototype.onOpenSocket = function(e, t) {
+                var o = this,
+                    i = s(e),
+                    r = i.split(":"),
+                    c = Number.parseInt(r[1]);
+                Socket.connect({
+                    host: "127.0.0.1",
+                    port: c
+                }, function(e) {
+                    if (!e) return void o.sendMessage(n.kCommandOKAY, 0, t);
+                    var i = ++o.currentSocketId,
+                        r = o.newAdbSocket(i);
+                    r.remoteId = t, o.sockets[i] = r, o.sendMessage(n.kCommandOKAY, i, t), Socket.stream(e, r)
+                })
             }, d.prototype.start = function() {
                 if (this.server) return void console.log("ADB Server started while already started");
                 this.clients = {}, this.adbDevices = {}, this.pendingDevices = {}, this.refreshing = {};
@@ -2093,7 +2107,7 @@
                     var s = o.interfaceNumber;
                     return !i[s] && (i[s] = e, console.log("claiming:", JSON.stringify(e), JSON.stringify(o)), chrome.usb.claimInterface(e, o.interfaceNumber, function() {
                         console.log("claimed:", JSON.stringify(chrome.runtime.lastError)), a(e, o, function(e) {
-                            return e ? (e.serialno = t, void r.withAdbDevice(e, function(e) {
+                            return e ? (e.serialno = t, e.onOpenSocket = r.onOpenSocket, void r.withAdbDevice(e, function(e) {
                                 delete i[s], n(e)
                             })) : (delete i[s], void n())
                         })
@@ -2231,21 +2245,22 @@
                         }
                         var f = r[2],
                             p = 5555;
-                        r.length > 3 && (p = Number.parseInt(r[3])), Socket.connect({
-                            host: f,
-                            port: p
-                        }, function(e, o) {
-                            if (!e) return console.error("connect failed"), this.write("unable to connect to " + f + " " + p + ": " + o, "FAIL"), this;
-                            var i = new n(new t(e), function(e) {
-                                this.server.withAdbDevice(e, function() {
-                                    var e = "connected to " + f + ":" + p;
-                                    console.log(e), this.write(e)
-                                }.bind(this))
+                        r.length > 3 && (p = Number.parseInt(r[3])),
+                            Socket.connect({
+                                host: f,
+                                port: p
+                            }, function(e, o) {
+                                if (!e) return console.error("connect failed"), this.write("unable to connect to " + f + " " + p + ": " + o, "FAIL"), this;
+                                var i = new n(new t(e), function(e) {
+                                    this.server.withAdbDevice(e, function() {
+                                        var e = "connected to " + f + ":" + p;
+                                        console.log(e), this.write(e)
+                                    }.bind(this))
+                                }.bind(this));
+                                i.onOpenSocket = this.onOpenSocket, i.serialno = f + ":" + p, e.onClose = function() {
+                                    i.fatal("socket closed")
+                                }.bind(this), i.sendMessage(n.kCommandCNXN, n.ADB_PROTOCOL_VERSION, n.MAX_PAYLOAD, "host::"), i.receiveMessages()
                             }.bind(this));
-                            i.serialno = f + ":" + p, e.onClose = function() {
-                                i.fatal("socket closed")
-                            }.bind(this), i.sendMessage(n.kCommandCNXN, n.ADB_PROTOCOL_VERSION, n.MAX_PAYLOAD, "host::"), i.receiveMessages()
-                        }.bind(this));
                         break;
                     case "host:track-devices":
                         this.tracking = u(), this.writeDevices({}, function() {});
@@ -2788,7 +2803,10 @@
                         if (!h) {
                             console.log("Checking cached enterprise license.");
                             var n = yield chrome.storage.local.get("cachedEnterpriseLicense", yield);
-                            e = "https://billing.vysor.io", i = "Enterprise Account (" + ")", t = !0, console.log("Cached Enterprise license is valid for " + (Date.now() + 24 * I * 60 * 60 * 1e3 - Date.now()) / 36e5 + " hours"), o = !0, a(), Date.now() + 24 * L * 60 * 60 * 1e3 < Date.now() && (v = !1, yield* S())
+                            var r = yield C("AQAB", "hDuGsIhbjLYXteQX3F3KNriQHwUSZurS5voCkdpA1733A65pqtGOrk9g_yLiF94_vSK0VmL-4stq7WAYEbn6nw", n.cachedEnterpriseLicense.signed_data, n.cachedEnterpriseLicense.signature, yield);
+                            var s = JSON.parse(n.cachedEnterpriseLicense.signed_data),
+                                c = g(U.email, s);
+                            e = "https://billing.vysor.io", i = "Enterprise Account", t = !0, console.log("Cached Enterprise license is valid for " + (Date.now() + 24 * I * 60 * 60 * 1e3 - Date.now()) / 36e5 + " hours"), o = !0, a(), Date.now() + 24 * L * 60 * 60 * 1e3 < Date.now() && (v = !1, yield* S())
                         }
                     }.bind(this);
                 if (this.a()) return void a();
@@ -2980,21 +2998,21 @@
     var Ne;
     chrome.app.runtime.onLaunched.addListener(function(e) {
         G(), e && "vysor_purchase" == e.id && We.refresh(null, !0), e && "vysor_presentation" == e.id && Z(e.url, function(e) {
-            K(e)
+            j(e)
         }), e && "vysor_device_farm" == e.id && (console.log("device farm", e.url), De && De.show(), G(), m("Vysor is connecting to shared Android devices"), w(!0, function(t) {
-            return t ? void Y(e.url, t, function(e, t) {
+            return t ? void J(e.url, t, function(e, t) {
                 return t ? void T("Vysor Share", "Unable to connect to shared devices. " + t) : void T("Vysor Share", "Connected to " + e.name + "'s remote devices.")
             }) : void m("Unable to get auth token")
         })), ee()
     });
     var _e, xe;
-    Y = re(Y), X = re(X), oe = re(oe), Z = re(Z), chrome.storage.local.get("share-all-devices", function(e) {
+    J = re(J), X = re(X), oe = re(oe), Z = re(Z), chrome.storage.local.get("share-all-devices", function(e) {
         e["share-all-devices"] && X(!1, function() {
             P()
         })
     });
-    var Be, Fe, Ve, je, Ke, qe, He, Je = {},
-        Ye = {},
+    var Be, Fe, Ve, Ke, je, qe, He, Ye = {},
+        Je = {},
         $e = {},
         Xe = {},
         ze = {};
