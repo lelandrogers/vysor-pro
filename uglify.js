@@ -2801,12 +2801,13 @@
                     }.bind(this),
                     E = function*() {
                         if (!h) {
-                            console.log("Checking cached enterprise license.");
-                            var n = yield chrome.storage.local.get("cachedEnterpriseLicense", yield);
-                            var r = yield C("AQAB", "hDuGsIhbjLYXteQX3F3KNriQHwUSZurS5voCkdpA1733A65pqtGOrk9g_yLiF94_vSK0VmL-4stq7WAYEbn6nw", '', '', yield);
-                            var s = JSON.parse('{}'),
-                                c = g(U.email, s);
-                            e = "https://billing.vysor.io", i = "Enterprise Account", t = !0, console.log("Cached Enterprise license is valid for " + (Date.now() + 24 * I * 60 * 60 * 1e3 - Date.now()) / 36e5 + " hours"), o = !0, a(), Date.now() + 24 * L * 60 * 60 * 1e3 < Date.now() && (v = !1, yield* S())
+                          console.log("Checking cached enterprise license.");
+                          var n = yield chrome.storage.local.get("cachedEnterpriseLicense", yield);
+                          e = "https://billing.vysor.io", i = "Enterprise Account (" + ")", t = !0, console.log("Cached Enterprise license is valid for " + (Date.now() + 24 * I * 60 * 60 * 1e3 - Date.now()) / 36e5 + " hours"), o = !0, a(), Date.now() + 24 * L * 60 * 60 * 1e3 < Date.now() && (v = !1, yield* S())
+                          var r = yield C("AQAB", "hDuGsIhbjLYXteQX3F3KNriQHwUSZurS5voCkdpA1733A65pqtGOrk9g_yLiF94_vSK0VmL-4stq7WAYEbn6nw", n.cachedEnterpriseLicense.signed_data, n.cachedEnterpriseLicense.signature, yield);
+                          var s = JSON.parse(n.cachedEnterpriseLicense.signed_data),
+                              c = g(U.email, s);
+                          e = "https://billing.vysor.io", i = "Enterprise Account", t = !0, console.log("Cached Enterprise license is valid for " + (Date.now() + 24 * I * 60 * 60 * 1e3 - Date.now()) / 36e5 + " hours"), o = !0, a(), Date.now() + 24 * L * 60 * 60 * 1e3 < Date.now() && (v = !1, yield* S())
                         }
                     }.bind(this);
                 if (this.a()) return void a();
